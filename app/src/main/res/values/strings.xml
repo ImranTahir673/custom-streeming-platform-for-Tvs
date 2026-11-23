@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Faisal TV</string>
+    <string name="loading_channels">Loading channels...</string>
+    <string name="retry">Retry</string>
+    <string name="error_forbidden">Not connected to Faisal home network. Connect this TV to home Wi-Fi and press Retry.</string>
+    <string name="error_network">Can\'t reach the TV server. Check your Wi-Fi connection and press Retry.</string>
+    <string name="error_empty">No channels available right now.</string>
+    <string name="error_stream_offline">This channel is currently offline.</string>
+    <string name="error_stream_unavailable">Stream unavailable. Press OK to retry or Back for channels.</string>
+    <string name="all_channels">All Channels</string>
+    <string name="favorites">★ Favorites</string>
+    <string name="recently_watched">Recently Watched</string>
+    <string name="live_badge">LIVE</string>
+</resources>
