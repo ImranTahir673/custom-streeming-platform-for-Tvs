@@ -18,8 +18,8 @@
     <application
         android:name=".FaisalTvApp"
         android:allowBackup="true"
-        android:banner="@drawable/banner"
-        android:icon="@drawable/ic_launcher"
+        android:banner="@drawable/banner_streamhome"
+        android:icon="@drawable/ic_streamhome"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
@@ -49,6 +49,13 @@
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.FaisalTV.Player" />
+
+        <activity
+            android:name=".ui.category.CategoryActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.FaisalTV" />
 
     </application>
 

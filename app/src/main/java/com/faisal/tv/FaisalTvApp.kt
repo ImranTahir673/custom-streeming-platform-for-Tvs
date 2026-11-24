@@ -12,7 +12,7 @@ class FaisalTvApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        container = AppContainer()
+        container = AppContainer(this)
     }
 
     override fun onTrimMemory(level: Int) {
@@ -26,8 +26,9 @@ class FaisalTvApp : Application() {
     }
 }
 
-class AppContainer {
+class AppContainer(context: android.content.Context) {
     val apiService by lazy { NetworkModule.createApiService() }
     val repository by lazy { ContentRepository(apiService) }
+    val prefsStore by lazy { com.faisal.tv.data.local.PrefsStore(context) }
 }
 

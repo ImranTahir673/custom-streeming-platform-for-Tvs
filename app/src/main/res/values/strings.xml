@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Faisal TV</string>
+    <string name="app_name">StreamHome TV</string>
     <string name="loading_channels">Loading channels...</string>
     <string name="retry">Retry</string>
-    <string name="error_forbidden">Not connected to Faisal home network. Connect this TV to home Wi-Fi and press Retry.</string>
+    <string name="error_forbidden">Not connected to StreamHome network. Connect this TV to home Wi-Fi and press Retry.</string>
     <string name="error_network">Can\'t reach the TV server. Check your Wi-Fi connection and press Retry.</string>
     <string name="error_empty">No channels available right now.</string>
     <string name="error_stream_offline">This channel is currently offline.</string>
     <string name="error_stream_unavailable">Stream unavailable. Press OK to retry or Back for channels.</string>
     <string name="all_channels">All Channels</string>
-    <string name="favorites">★ Favorites</string>
+    <string name="favorites">&#9733; Favorites</string>
     <string name="recently_watched">Recently Watched</string>
     <string name="live_badge">LIVE</string>
+    <string name="remote_hint">&#9650;&#9660; Switch Channel  &#8226;  &#9733; Menu to Favorite</string>
+    <string name="retrying_stream">This channel is currently unavailable. Retrying (%1$d/3)...</string>
+    <string name="channel_offline_hint">Channel offline. Press &#9650;&#9660; to zap or BACK to return to Home.</string>
+    <string name="press_back_again_to_exit">Press BACK again to exit StreamHome TV</string>
+    <string name="added_to_favorites">Added to Favorites</string>
+    <string name="removed_from_favorites">Removed from Favorites</string>
+    <string name="featured_title">FEATURED</string>
 </resources>

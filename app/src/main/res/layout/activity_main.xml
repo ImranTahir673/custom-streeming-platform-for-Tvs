@@ -9,6 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- IC #7 Small Clock and Date in top-right bar -->
+    <TextView
+        android:id="@+id/home_clock_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="48dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
     <!-- Error / Offline Overlay -->
     <LinearLayout
         android:id="@+id/error_layout"

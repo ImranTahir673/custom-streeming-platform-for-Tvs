@@ -37,6 +37,9 @@ class ContentRepository(
             } else {
                 // "All Channels" sorted by views descending
                 val sortedAll = channels.sortedByDescending { it.views }
+                sortedAll.forEachIndexed { index, channel ->
+                    channel.channelNumber = index + 1
+                }
 
                 // Group by categories[0].name
                 val grouped = LinkedHashMap<String, MutableList<ChannelDto>>()

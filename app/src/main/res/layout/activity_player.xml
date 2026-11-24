@@ -6,6 +6,7 @@
     android:background="@color/bg_canvas"
     android:keepScreenOn="true">
 
+    <!-- Video Surface -->
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view"
         android:layout_width="match_parent"
@@ -22,25 +23,27 @@
         android:indeterminate="true"
         android:visibility="gone" />
 
-    <!-- Error Overlay -->
+    <!-- T2.2 Stream Error Recovery Overlay -->
     <LinearLayout
         android:id="@+id/player_error_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#DD0E1117"
+        android:background="#E60E1117"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp"
+        android:padding="28dp"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/player_error_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxWidth="500dp"
             android:text="@string/error_stream_unavailable"
             android:textColor="@color/text_primary"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/player_btn_retry"
@@ -53,38 +56,143 @@
             android:textColor="@color/text_primary" />
     </LinearLayout>
 
-    <!-- Simple Bottom Info Bar (Channel title, LIVE badge) -->
+    <!-- IC #6 Mini Channel List (slides up on Down press) -->
     <LinearLayout
-        android:id="@+id/player_info_bar"
+        android:id="@+id/player_mini_list_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#CC0E1117"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/player_channel_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/text_primary"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+        android:background="#F00E1117"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/accent_live"
-            android:paddingStart="12dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="4dp"
-            android:text="@string/live_badge"
-            android:textColor="#FFFFFF"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/all_channels"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:textStyle="bold" />
+
+        <androidx.leanback.widget.HorizontalGridView
+            android:id="@+id/player_mini_grid"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:clipToPadding="false"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <!-- T2.1 Bottom OSD Bar (auto-hides after 4s) -->
+    <LinearLayout
+        android:id="@+id/player_osd_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_osd_bar"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Channel Poster Thumbnail -->
+            <ImageView
+                android:id="@+id/player_osd_poster"
+                android:layout_width="72dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_glass_card_normal"
+                android:scaleType="centerCrop" />
+
+            <!-- Channel Number Pill -->
+            <TextView
+                android:id="@+id/player_osd_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_badge_pill"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="3dp"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Channel Title -->
+            <TextView
+                android:id="@+id/player_osd_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_primary"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <!-- Favorite Star Badge -->
+            <TextView
+                android:id="@+id/player_osd_fav_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="★"
+                android:textColor="@color/accent_gold"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <!-- Category Pill -->
+            <TextView
+                android:id="@+id/player_osd_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_badge_pill"
+                android:paddingStart="12dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <!-- Red LIVE Badge -->
+            <TextView
+                android:id="@+id/player_osd_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_live"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                android:text="@string/live_badge"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Remote Navigation Hints -->
+        <TextView
+            android:id="@+id/player_osd_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/remote_hint"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
 </FrameLayout>

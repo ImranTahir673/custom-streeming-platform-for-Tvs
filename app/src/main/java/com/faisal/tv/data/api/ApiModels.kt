@@ -38,18 +38,19 @@ data class ChannelDto(
     @SerializedName("views") val views: Long = 0,
     @SerializedName("status") val status: Int = 0,
     @SerializedName("links") val links: LinksDto? = null,
-    @SerializedName("categories") val categories: List<CategoryDto> = emptyList()
-)
+    @SerializedName("categories") val categories: List<CategoryDto> = emptyList(),
+    var channelNumber: Int = 0
+) : java.io.Serializable
 
 @Keep
 data class LinksDto(
     @SerializedName("android") val android: String? = null,
     @SerializedName("web") val web: String? = null,
     @SerializedName("ios") val ios: String? = null
-)
+) : java.io.Serializable
 
 @Keep
 data class CategoryDto(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String
-)
+) : java.io.Serializable
