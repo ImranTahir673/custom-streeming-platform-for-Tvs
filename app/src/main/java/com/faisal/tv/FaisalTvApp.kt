@@ -1,6 +1,7 @@
 package com.faisal.tv
 
 import android.app.Application
+import com.bumptech.glide.Glide
 import com.faisal.tv.data.api.NetworkModule
 import com.faisal.tv.data.repository.ContentRepository
 
@@ -13,9 +14,20 @@ class FaisalTvApp : Application() {
         super.onCreate()
         container = AppContainer()
     }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        Glide.get(this).onTrimMemory(level)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        Glide.get(this).onLowMemory()
+    }
 }
 
 class AppContainer {
     val apiService by lazy { NetworkModule.createApiService() }
     val repository by lazy { ContentRepository(apiService) }
 }
+

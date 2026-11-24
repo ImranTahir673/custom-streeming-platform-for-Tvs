@@ -78,7 +78,7 @@ class PlayerActivity : AppCompatActivity() {
         errorLayout.visibility = View.GONE
         bufferingSpinner.visibility = View.VISIBLE
 
-        // Conservative DefaultLoadControl: min 15s / max 30s / playback 2.5s / rebuffer 5s
+        // Conservative DefaultLoadControl: min 15s / max 30s / playback 2.5s / rebuffer 5s / max 15MB buffer
         val loadControl = DefaultLoadControl.Builder()
             .setBufferDurationsMs(
                 15000, // minBufferMs
@@ -86,6 +86,7 @@ class PlayerActivity : AppCompatActivity() {
                 2500,  // bufferForPlaybackMs
                 5000   // bufferForPlaybackAfterRebufferMs
             )
+            .setTargetBufferBytes(15 * 1024 * 1024)
             .build()
 
         val httpDataSourceFactory = DefaultHttpDataSource.Factory()
